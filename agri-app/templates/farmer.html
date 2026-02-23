@@ -1,0 +1,29 @@
+<h2>Farmer - Create Batch</h2>
+
+<form method="POST">
+    <input type="text" name="farmer" placeholder="Farmer Name" required><br><br>
+
+    <select name="crop" required>
+        <option value="">Select Crop</option>
+        <option value="Wheat">Wheat</option>
+        <option value="Rice">Rice</option>
+        <option value="Maize">Maize</option>
+        <option value="Tomato">Tomato</option>
+    </select><br><br>
+
+    <input type="number" name="quantity" placeholder="Quantity (kg)" required><br><br>
+
+    <input type="text" name="location" placeholder="Farm Location" required><br><br>
+
+    <input type="number" name="temperature" placeholder="Temperature (°C)" required><br><br>
+
+    <select name="soilType" required>
+        <option value="">Select Soil Type</option>
+        <option value="Loamy">Loamy</option>
+        <option value="Clay">Clay</option>
+        <option value="Sandy">Sandy</option>
+        <option value="Black Soil">Black Soil</option>
+    </select><br><br>
+
+    <button type="submit">Create Batch</button>
+</form>

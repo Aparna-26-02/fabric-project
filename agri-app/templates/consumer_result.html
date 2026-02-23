@@ -1,0 +1,31 @@
+<h2>Batch Provenance</h2>
+
+{% set data = result | safe %}
+
+<pre style="display:none;">{{ result }}</pre>
+
+<script>
+    const raw = `{{ result | safe }}`;
+    try {
+        const obj = JSON.parse(raw);
+
+        document.write(`
+        <p><strong>Batch ID:</strong> ${obj.batchID}</p>
+        <p><strong>Farmer:</strong> ${obj.farmer}</p>
+        <p><strong>Crop:</strong> ${obj.crop}</p>
+        <p><strong>Quantity:</strong> ${obj.quantity} kg</p>
+        <p><strong>Location:</strong> ${obj.location}</p>
+        <p><strong>Temperature:</strong> ${obj.temperature}°C</p>
+        <p><strong>Soil Type:</strong> ${obj.soilType}</p>
+        <p><strong>Status:</strong> ${obj.status}</p>
+        <p><strong>Grade:</strong> ${obj.grade}</p>
+        <p><strong>Buyer:</strong> ${obj.buyer}</p>
+        <p><strong>Price:</strong> ₹${obj.price}</p>
+        <p><strong>Payment Status:</strong> ${obj.paymentStatus}</p>
+        `);
+    } catch (e) {
+        document.write("<p>Error reading batch.</p>");
+    }
+</script>
+
+<a href="/">Back</a>

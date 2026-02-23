@@ -1,0 +1,39 @@
+<h2>Warehouse - Quality Approval</h2>
+
+<form method="POST">
+    <input type="text" name="batchID" placeholder="Enter Batch ID" required>
+    <button type="submit">Fetch Details</button>
+</form>
+
+{% if batch %}
+
+<hr>
+
+<h3>Batch Details</h3>
+
+<p><strong>Batch ID:</strong> {{ batch.batchID }}</p>
+<p><strong>Farmer:</strong> {{ batch.farmer }}</p>
+<p><strong>Crop:</strong> {{ batch.crop }}</p>
+<p><strong>Quantity:</strong> {{ batch.quantity }} kg</p>
+<p><strong>Location:</strong> {{ batch.location }}</p>
+<p><strong>Temperature:</strong> {{ batch.temperature }} °C</p>
+<p><strong>Soil Type:</strong> {{ batch.soilType }}</p>
+<p><strong>Status:</strong> {{ batch.status }}</p>
+
+<hr>
+
+<h3>Approve Quality</h3>
+
+<form method="POST">
+    <input type="hidden" name="batchID" value="{{ batchID }}">
+    
+    <select name="grade" required>
+        <option value="A">Grade A</option>
+        <option value="B">Grade B</option>
+        <option value="C">Grade C</option>
+    </select>
+
+    <button type="submit">Approve</button>
+</form>
+
+{% endif %}

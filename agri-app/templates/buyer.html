@@ -1,0 +1,54 @@
+<h2>Buyer - Purchase Order Management</h2>
+
+<form method="POST">
+    <input type="text" name="batchID" placeholder="Enter Batch ID" required>
+    <button type="submit">Fetch Details</button>
+</form>
+
+{% if batch %}
+
+<hr>
+
+<h3>Batch Details</h3>
+
+<p><strong>Farmer:</strong> {{ batch.farmer }}</p>
+<p><strong>Crop:</strong> {{ batch.crop }}</p>
+<p><strong>Quantity:</strong> {{ batch.quantity }} kg</p>
+<p><strong>Location:</strong> {{ batch.location }}</p>
+<p><strong>Grade:</strong> {{ batch.grade }}</p>
+<p><strong>Status:</strong> {{ batch.status }}</p>
+<p><strong>Payment:</strong> {{ batch.paymentStatus }}</p>
+
+<hr>
+
+{% if batch.status == "QUALITY_APPROVED" %}
+
+<h3>Create Purchase Order</h3>
+
+<form method="POST">
+    <input type="hidden" name="batchID" value="{{ batchID }}">
+    
+    <select name="buyer" required>
+        <option value="SuperMarket">SuperMarket</option>
+        <option value="RetailStore">RetailStore</option>
+        <option value="ExportCompany">ExportCompany</option>
+    </select><br><br>
+
+    <input type="number" name="price" placeholder="Enter Price" required>
+    <button type="submit">Create PO</button>
+</form>
+
+{% elif batch.status == "PO_CREATED" %}
+
+<h3>Delivery Pending</h3>
+<a href="/deliver/{{ batchID }}">
+    <button>Confirm Delivery & Release Payment</button>
+</a>
+
+{% elif batch.status == "DELIVERED" %}
+
+<h3 style="color:green;">Payment Completed ✔</h3>
+
+{% endif %}
+
+{% endif %}
