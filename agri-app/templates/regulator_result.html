@@ -1,3 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Batch Audit Trail | AgriChain</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(rgba(0,40,20,0.85), rgba(0,40,20,0.85)),
+                url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    color: white;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background: linear-gradient(to right, #002d1a, #004d2b);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #00C389;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    margin-left: 30px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #00C389;
+}
+
+/* Main Container */
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 60px 20px;
+}
+
+.card {
+    width: 100%;
+    max-width: 900px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+h2 {
+    color: #00C389;
+    margin-bottom: 25px;
+}
+
+/* Code-style box */
+.audit-box {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 12px;
+    overflow-x: auto;
+    font-size: 13px;
+    line-height: 1.6;
+    border: 1px solid rgba(0,195,137,0.3);
+}
+
+/* Verified Banner */
+.verified {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 12px;
+    background: rgba(0,195,137,0.15);
+    border: 1px solid #00C389;
+    color: #00C389;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Back Button */
+.back-btn {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 12px 25px;
+    border-radius: 30px;
+    background: linear-gradient(to right, #00C389, #00a86b);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,195,137,0.4);
+}
+
+@media(max-width:768px){
+    .navbar {
+        flex-direction: column;
+    }
+    .nav-links {
+        margin-top: 10px;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <div class="logo">AgriChain</div>
+    <div class="nav-links">
+        <a href="/farmer">FARMER</a>
+        <a href="/warehouse">WAREHOUSE</a>
+        <a href="/buyer">BUYER</a>
+        <a href="/consumer">CONSUMER</a>
+    </div>
+</div>
+
+<div class="container">
+<div class="card">
+
 <h2>Batch Audit Trail</h2>
+
+<div class="audit-box">
 <pre>{{ result }}</pre>
-<a href="/">Back</a>
+</div>
+
+<div class="verified">
+    🔐 Immutable Blockchain Record | Tamper-Resistant | Fully Traceable
+</div>
+
+<a href="/" class="back-btn">Back to Home</a>
+
+</div>
+</div>
+
+</body>
+</html>

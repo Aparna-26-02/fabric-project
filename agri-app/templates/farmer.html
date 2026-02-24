@@ -1,7 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farmer - Create Batch | AgriChain</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(rgba(0,40,20,0.85), rgba(0,40,20,0.85)),
+                url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    color: white;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background: linear-gradient(to right, #002d1a, #004d2b);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #00C389;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    margin-left: 30px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #00C389;
+}
+
+/* Main Layout */
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 60px 20px;
+}
+
+.card {
+    width: 100%;
+    max-width: 700px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+h2 {
+    color: #00C389;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Form Elements */
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 14px;
+    border-radius: 30px;
+    border: none;
+    background: linear-gradient(to right, #00C389, #00a86b);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,195,137,0.4);
+}
+
+/* Info Box */
+.info-box {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 12px;
+    background: rgba(0,195,137,0.1);
+    border: 1px dashed #00C389;
+    font-size: 13px;
+    color: #00C389;
+    text-align: center;
+}
+
+@media(max-width:768px){
+    .navbar {
+        flex-direction: column;
+    }
+    .nav-links {
+        margin-top: 10px;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <div class="logo">AgriChain</div>
+    <div class="nav-links">
+        <a href="/farmer">FARMER</a>
+        <a href="/warehouse">WAREHOUSE</a>
+        <a href="/buyer">BUYER</a>
+        <a href="/consumer">CONSUMER</a>
+    </div>
+</div>
+
+<div class="container">
+<div class="card">
+
 <h2>Farmer - Create Batch</h2>
 
 <form method="POST">
-    <input type="text" name="farmer" placeholder="Farmer Name" required><br><br>
+
+    <input type="text" name="farmer" placeholder="Farmer Name" required>
 
     <select name="crop" required>
         <option value="">Select Crop</option>
@@ -9,13 +153,13 @@
         <option value="Rice">Rice</option>
         <option value="Maize">Maize</option>
         <option value="Tomato">Tomato</option>
-    </select><br><br>
+    </select>
 
-    <input type="number" name="quantity" placeholder="Quantity (kg)" required><br><br>
+    <input type="number" name="quantity" placeholder="Quantity (kg)" required>
 
-    <input type="text" name="location" placeholder="Farm Location" required><br><br>
+    <input type="text" name="location" placeholder="Farm Location" required>
 
-    <input type="number" name="temperature" placeholder="Temperature (°C)" required><br><br>
+    <input type="number" name="temperature" placeholder="Temperature (°C)" required>
 
     <select name="soilType" required>
         <option value="">Select Soil Type</option>
@@ -23,7 +167,18 @@
         <option value="Clay">Clay</option>
         <option value="Sandy">Sandy</option>
         <option value="Black Soil">Black Soil</option>
-    </select><br><br>
+    </select>
 
     <button type="submit">Create Batch</button>
+
 </form>
+
+<div class="info-box">
+    🌿 Each batch will be immutably recorded on blockchain with a unique Batch ID & QR traceability.
+</div>
+
+</div>
+</div>
+
+</body>
+</html>

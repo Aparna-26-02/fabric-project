@@ -1,15 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Batch Provenance - AgriChain</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(rgba(0,40,20,0.85), rgba(0,40,20,0.85)),
+                url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    color: white;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background: linear-gradient(to right, #002d1a, #004d2b);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #00C389;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    margin-left: 30px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #00C389;
+}
+
+/* Main Container */
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 60px 20px;
+}
+
+.card {
+    width: 100%;
+    max-width: 800px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+h2 {
+    color: #00C389;
+    margin-bottom: 30px;
+}
+
+.details p {
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+
+/* Badge */
+.badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.green { background: #2ecc71; }
+.orange { background: #f39c12; }
+.blue { background: #3498db; }
+
+/* Verified Box */
+.verified {
+    margin-top: 25px;
+    padding: 20px;
+    border-radius: 12px;
+    background: rgba(0,195,137,0.15);
+    border: 1px solid #00C389;
+    color: #00C389;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Back Button */
+.back-btn {
+    display: inline-block;
+    margin-top: 30px;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 30px;
+    background: linear-gradient(to right, #00C389, #00a86b);
+    color: white;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,195,137,0.4);
+}
+
+@media(max-width:768px){
+    .navbar {
+        flex-direction: column;
+    }
+    .nav-links {
+        margin-top: 10px;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <div class="logo">AgriChain</div>
+    <div class="nav-links">
+        <a href="/farmer">FARMER</a>
+        <a href="/warehouse">WAREHOUSE</a>
+        <a href="/buyer">BUYER</a>
+        <a href="/consumer">CONSUMER</a>
+    </div>
+</div>
+
+<div class="container">
+<div class="card">
+
 <h2>Batch Provenance</h2>
 
 {% set data = result | safe %}
-
 <pre style="display:none;">{{ result }}</pre>
 
-<script>
-    const raw = `{{ result | safe }}`;
-    try {
-        const obj = JSON.parse(raw);
+<div class="details" id="output"></div>
 
-        document.write(`
+<script>
+const raw = `{{ result | safe }}`;
+try {
+    const obj = JSON.parse(raw);
+
+    let statusBadge = obj.status;
+
+    if(obj.status === "DELIVERED"){
+        statusBadge = `<span class="badge green">DELIVERED</span>`;
+    } else if(obj.status === "PO_CREATED"){
+        statusBadge = `<span class="badge orange">PO CREATED</span>`;
+    } else if(obj.status === "QUALITY_APPROVED"){
+        statusBadge = `<span class="badge blue">QUALITY APPROVED</span>`;
+    }
+
+    document.getElementById("output").innerHTML = `
         <p><strong>Batch ID:</strong> ${obj.batchID}</p>
         <p><strong>Farmer:</strong> ${obj.farmer}</p>
         <p><strong>Crop:</strong> ${obj.crop}</p>
@@ -17,15 +177,25 @@
         <p><strong>Location:</strong> ${obj.location}</p>
         <p><strong>Temperature:</strong> ${obj.temperature}°C</p>
         <p><strong>Soil Type:</strong> ${obj.soilType}</p>
-        <p><strong>Status:</strong> ${obj.status}</p>
+        <p><strong>Status:</strong> ${statusBadge}</p>
         <p><strong>Grade:</strong> ${obj.grade}</p>
         <p><strong>Buyer:</strong> ${obj.buyer}</p>
         <p><strong>Price:</strong> ₹${obj.price}</p>
         <p><strong>Payment Status:</strong> ${obj.paymentStatus}</p>
-        `);
-    } catch (e) {
-        document.write("<p>Error reading batch.</p>");
-    }
+
+        <div class="verified">
+            ✔ Blockchain Verified & Traceable
+        </div>
+    `;
+} catch (e) {
+    document.getElementById("output").innerHTML = "<p>Error reading batch.</p>";
+}
 </script>
 
-<a href="/">Back</a>
+<a href="/" class="back-btn">Back to Home</a>
+
+</div>
+</div>
+
+</body>
+</html>

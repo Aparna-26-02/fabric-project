@@ -1,5 +1,167 @@
-<h1>Agri Blockchain System</h1>
-<a href="/farmer">Farmer</a><br>
-<a href="/warehouse">Warehouse</a><br>
-<a href="/buyer">Buyer</a><br>
-<a href="/consumer">Consumer</a><br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgriChain | Blockchain Supply Chain</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(rgba(0,40,20,0.88), rgba(0,40,20,0.88)),
+                url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    color: white;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background: linear-gradient(to right, #002d1a, #004d2b);
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: 700;
+    color: #00C389;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    text-align: center;
+    padding: 20px;
+}
+
+.hero h1 {
+    font-size: 38px;
+    color: #00C389;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 17px;
+    max-width: 750px;
+    margin-bottom: 45px;
+    opacity: 0.95;
+    line-height: 1.6;
+}
+
+/* Portal Grid */
+.portal-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);   /* 2 per row */
+    gap: 30px;
+    width: 100%;
+    max-width: 700px;
+}
+
+/* Portal Card */
+.portal-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    transition: 0.3s ease;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+.portal-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 35px rgba(0,195,137,0.4);
+}
+
+.portal-card a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    display: block;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+/* Mobile Responsive */
+@media(max-width:768px){
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .portal-grid {
+        grid-template-columns: 1fr;   /* 1 per row on mobile */
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <div class="logo">AgriChain</div>
+</div>
+
+<!-- Hero Section -->
+<div class="hero">
+
+    <h1>Blockchain-Enabled Agri Supply Chain & Traceability Platform</h1>
+
+    <p>
+        End-to-end agricultural transparency powered by blockchain.
+    </p>
+
+    <div class="portal-grid">
+
+        <!-- Row 1 -->
+        <div class="portal-card">
+            <a href="/farmer">🌾 Farmer Portal</a>
+        </div>
+
+        <div class="portal-card">
+            <a href="/warehouse">🏭 Warehouse & Quality Portal</a>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="portal-card">
+            <a href="/buyer">🛒 Buyer & Purchase Order Portal</a>
+        </div>
+
+        <div class="portal-card">
+            <a href="/consumer">📱 Consumer Provenance Portal</a>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    © 2026 AgriChain | Blockchain-Based Agri Supply Chain | Hyperledger Fabric
+</div>
+
+</body>
+</html>

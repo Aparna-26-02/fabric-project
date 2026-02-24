@@ -1,3 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buyer - AgriChain</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(rgba(0,40,20,0.85), rgba(0,40,20,0.85)),
+                url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    color: white;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background: linear-gradient(to right, #002d1a, #004d2b);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #00C389;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    margin-left: 30px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #00C389;
+}
+
+/* Main Container */
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 60px 20px;
+}
+
+.card {
+    width: 100%;
+    max-width: 800px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+/* Titles */
+h2, h3 {
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #00C389;
+}
+
+/* Inputs */
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+}
+
+/* Buttons */
+button {
+    padding: 12px 25px;
+    border-radius: 30px;
+    border: none;
+    background: linear-gradient(to right, #00C389, #00a86b);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,195,137,0.4);
+}
+
+/* Batch Details */
+.details p {
+    margin-bottom: 10px;
+}
+
+/* Status Badges */
+.badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.blue { background: #3498db; }
+.orange { background: #f39c12; }
+.green { background: #2ecc71; }
+
+/* Success Box */
+.success-box {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    background: rgba(46, 204, 113, 0.15);
+    border: 1px solid #2ecc71;
+    color: #2ecc71;
+    font-weight: 600;
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .navbar {
+        flex-direction: column;
+    }
+    .nav-links {
+        margin-top: 10px;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <div class="logo">AgriChain</div>
+    <div class="nav-links">
+        <a href="/farmer">FARMER</a>
+        <a href="/warehouse">WAREHOUSE</a>
+        <a href="/buyer">BUYER</a>
+        <a href="/consumer">CONSUMER</a>
+    </div>
+</div>
+
+<div class="container">
+<div class="card">
+
 <h2>Buyer - Purchase Order Management</h2>
 
 <form method="POST">
@@ -7,19 +170,33 @@
 
 {% if batch %}
 
-<hr>
+<hr style="margin:30px 0; border:0.5px solid rgba(255,255,255,0.2);">
 
 <h3>Batch Details</h3>
 
+<div class="details">
 <p><strong>Farmer:</strong> {{ batch.farmer }}</p>
 <p><strong>Crop:</strong> {{ batch.crop }}</p>
 <p><strong>Quantity:</strong> {{ batch.quantity }} kg</p>
 <p><strong>Location:</strong> {{ batch.location }}</p>
 <p><strong>Grade:</strong> {{ batch.grade }}</p>
-<p><strong>Status:</strong> {{ batch.status }}</p>
-<p><strong>Payment:</strong> {{ batch.paymentStatus }}</p>
 
-<hr>
+<p><strong>Status:</strong>
+    {% if batch.status == "QUALITY_APPROVED" %}
+        <span class="badge blue">QUALITY APPROVED</span>
+    {% elif batch.status == "PO_CREATED" %}
+        <span class="badge orange">PO CREATED</span>
+    {% elif batch.status == "DELIVERED" %}
+        <span class="badge green">DELIVERED</span>
+    {% else %}
+        {{ batch.status }}
+    {% endif %}
+</p>
+
+<p><strong>Payment:</strong> {{ batch.paymentStatus }}</p>
+</div>
+
+<hr style="margin:30px 0; border:0.5px solid rgba(255,255,255,0.2);">
 
 {% if batch.status == "QUALITY_APPROVED" %}
 
@@ -27,12 +204,12 @@
 
 <form method="POST">
     <input type="hidden" name="batchID" value="{{ batchID }}">
-    
+   
     <select name="buyer" required>
         <option value="SuperMarket">SuperMarket</option>
         <option value="RetailStore">RetailStore</option>
         <option value="ExportCompany">ExportCompany</option>
-    </select><br><br>
+    </select>
 
     <input type="number" name="price" placeholder="Enter Price" required>
     <button type="submit">Create PO</button>
@@ -47,8 +224,16 @@
 
 {% elif batch.status == "DELIVERED" %}
 
-<h3 style="color:green;">Payment Completed ✔</h3>
+<div class="success-box">
+    ✔ Payment Completed Successfully
+</div>
 
 {% endif %}
 
 {% endif %}
+
+</div>
+</div>
+
+</body>
+</html>
